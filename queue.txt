@@ -1,0 +1,94 @@
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+void operation(int num, int number);
+void displayArray();
+int x [5];
+int temp;
+int size = 0;
+
+int main()
+{
+    
+    int i, y, choice;
+
+    do{
+
+      printf("\n Choose from the options \n");
+      printf("1. Enqueue \n");
+      printf("2. Dequeue \n");
+      printf("3. Exit \n");
+      printf("Enter option: ");
+      scanf("%d", &choice);
+
+      switch(choice){
+        case 1:
+          printf("Enter element: ");
+          scanf("%d", &i);
+          operation(i, 1);
+          displayArray();
+          break;
+        case 2:
+          operation(i, 2);
+          displayArray();
+          break;
+      }
+       
+
+    }
+
+    while(choice != 3);
+
+   
+
+    return 0;
+
+}
+
+    void displayArray(){
+
+      for(int count = 0; count < sizeof(x) / sizeof(int); count++){
+        if(x[count] != NULL){
+          for(int j = count; j < size ; j++){
+            if(x[j] < x[count]){
+              temp = x[j];
+              x[j] = x[count];
+              x[count] = temp;
+            }
+          } 
+        }
+      }
+
+     
+
+      for(int c = 0; c < sizeof(x) / sizeof(int); c++){
+        printf("[%d]", x[c]);
+      }
+    }
+
+    void operation(int num, int number){
+        
+        switch(number){
+          case 1:
+            for(int counter = 0; counter < sizeof(x) / sizeof(int); counter++){
+              if(NULL == x[counter]){
+                x[counter] = num;
+                size++;
+                break;
+              }
+            }
+              break;
+          case 2:
+            for(int counter = 0; counter < sizeof(x) / sizeof(int); counter++){
+                  for(int c = counter ; c < sizeof(x) / sizeof(int); c++){
+                      x[c] = x[c + 1];
+                      size--;
+                  }
+              
+            }
+            break;
+        }
+
+    }

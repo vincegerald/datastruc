@@ -1,0 +1,88 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+void displayList();
+// void remove(list, item);
+
+
+struct List{
+
+  int data;
+  struct List* next;
+  struct List* head;
+  struct List* node;
+
+};
+
+void add(struct List *list, int i);
+
+
+
+void add(struct List *list, int i){
+
+  struct List* temp = (struct List*)malloc(sizeof(struct List));
+  temp->data = i;
+  temp->next = NULL;
+  temp->head = temp;
+
+}
+
+void displayList(){
+  struct List* temp = temp->head;
+  printf("List: ");
+  while(temp->head != NULL){
+    printf("[%d]", temp->data);
+    temp = temp->next;
+   }
+  printf("\n");
+}
+
+int main()
+{
+    
+    struct List list;
+  
+
+    int i, y, choice;
+
+    do{
+
+      printf("\n Choose from the options \n");
+      printf("1. Insert Element \n");
+      printf("2. Remove Element \n");
+      printf("3. Exit \n");
+      printf("Enter option: ");
+      scanf("%d", &choice);
+
+      switch(choice){
+        case 1:
+          printf("Enter element: ");
+          scanf("%d", &i);
+          add(&list, i);
+          displayList();
+          break;
+        case 2:
+          //operation(i, 2);
+          displayList();
+          break;
+
+        case 3:
+          // choice = 3;
+          printf("End program");
+          break;
+
+        default:
+          printf("Number not in the options");
+          break;
+
+      }
+
+
+    }
+
+    while(choice != 3);
+
+    return 0;
+}
